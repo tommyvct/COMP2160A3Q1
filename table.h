@@ -27,4 +27,7 @@ Boolean search( int item );
 Boolean firstItem( int * const item );
 Boolean nextItem( int * const item );
 
+void print();
+
+
 #endif

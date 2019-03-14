@@ -6,6 +6,8 @@
 
 // Linked list node definition
 typedef struct Node node;
+typedef bool Boolean;
+
 
 struct Node
 {
@@ -38,7 +40,7 @@ void clearTable()
     top = NULL;
 }
 
-bool insert(int toInsert)
+Boolean insertItem(int toInsert)
 {
     node *newNode = NULL;
     int whereToInsert = insertHere(toInsert);
@@ -80,9 +82,9 @@ bool insert(int toInsert)
 
 // starts a list traversal by getting the data at top.
 // returns false if top == NULL.
-bool firstNode(int *item)
+Boolean firstItem(int * const item)
 {
-    bool result = false;
+    Boolean result = false;
 
     if (top)
     {
@@ -98,9 +100,9 @@ bool firstNode(int *item)
 
 // gets the data at the current traversal node and increments the traversal.
 // returns false if we're at the end of the list.
-bool nextNode(int *item)
+Boolean nextItem(int * const item)
 {
-    bool result = false;
+    Boolean result = false;
 
     if (traverseNode)
     {
@@ -114,35 +116,113 @@ bool nextNode(int *item)
     return result;
 }
 
-// "print" will output an object's entire linked list
-// to the standard output device -- one "number" per line.
-void print()
-{
-    int value;
 
-    if (firstNode(&value))
-    {
-        do
-        {
-            printf("%d\n", value);
-        } while (nextNode(&value));
-    }
-}
-
-int insertHere(int toInsert)
+static int insertHere(int toInsert)
 {
     node * curr = top;
+    Boolean duplicate = false;
     int ret = 0;
-    
-    while(toInsert >= (curr -> number))
+
+    // for every element in list
+    while (curr != NULL)
     {
         if (toInsert = (curr -> number))
         {
-            return -999;
+            duplicate = true;
         }
-        ret++;
+        
+        //
+        if (toInsert > (curr -> number))
+        {
+            ret++;
+        }
+
         curr = curr -> next;
     }
 
-    return ret;
+    if (duplicate)
+    {
+        return -999;
+    }
+    else
+    {
+        return ret;
+    }
+}
+
+Boolean search(int item)
+{
+    node * curr = top;
+
+    while (curr != NULL)
+    {
+        if (item = (curr -> number))
+        {
+            return true;
+        }
+
+        curr = curr -> next;
+    }
+
+    return false;
+}
+
+Boolean removeItem( int item )
+{
+    node *prev = top;
+    node *temp = NULL;
+
+    if (!search(item))
+    {
+        return false;
+    }
+
+    if (item == top->number)
+    {
+        temp = top;
+        top = top->next;
+        free(temp);
+
+        size--;
+        return true;
+    }
+
+    while (prev != NULL)
+    {
+        // if reached the last item, nothing after it
+        if (prev->next == NULL)
+        {
+            break;
+        }
+        // if found item
+        if (prev->next->number == item)
+        {
+            // node to delete
+            temp = prev->next;
+            // skip it
+            prev->next = temp->next;
+            // delete from memory
+            free(temp);
+
+            size--;
+            return true;
+        }
+
+        prev = prev->next;
+    }
+
+    return false;
+}
+
+void print()
+{
+    node * curr = top;
+
+    while (curr != NULL)
+    {
+        printf("%d ", curr->number);
+        curr = curr -> next;
+    }
+
+    printf("\n");
 }
