@@ -18,6 +18,8 @@ struct Node
 static node *top = NULL;
 int size = 0;
 
+static int insertHere(int toInsert);
+
 // used to track where we are for the list traversal methods
 static node *traverseNode = NULL;
 
@@ -126,7 +128,7 @@ static int insertHere(int toInsert)
     // for every element in list
     while (curr != NULL)
     {
-        if (toInsert = (curr -> number))
+        if (toInsert == (curr -> number))
         {
             duplicate = true;
         }
@@ -156,7 +158,7 @@ Boolean search(int item)
 
     while (curr != NULL)
     {
-        if (item = (curr -> number))
+        if (item == (curr -> number))
         {
             return true;
         }
@@ -214,7 +216,7 @@ Boolean removeItem( int item )
     return false;
 }
 
-void print()
+void printTable()
 {
     node * curr = top;
 

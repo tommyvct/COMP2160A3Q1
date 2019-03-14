@@ -1,6 +1,6 @@
 #ifndef _TABLE_H
 #define _TABLE_H
-
+#include <stdbool.h>
 //-----------------------------------------------------------------------------
 // CONSTANTS AND TYPES
 //-----------------------------------------------------------------------------
@@ -27,7 +27,7 @@ Boolean search( int item );
 Boolean firstItem( int * const item );
 Boolean nextItem( int * const item );
 
-void print();
+void printTable();
 
 
 #endif
