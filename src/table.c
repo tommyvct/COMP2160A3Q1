@@ -1,34 +1,45 @@
+//--------------------------------------------------------------
+// Name: Shang Wu
+// Student Number: 7852291
+// Course: COMP2160, Section A01
+// Instructor: Mehdi Niknam
+// Assignment 3, Question 1
+// 
+// Implementation of Table ADT
+// Values inserted are unique, and internally sorted within a linked list. 
+//--------------------------------------------------------------
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
-// typedef enum BOOL { false, true } bool;
 
-// Linked list node definition
-typedef struct Node node;
+// Boolean defenition
+typedef enum BOOL {false, true} bool;
 typedef bool Boolean;
 
-
+// Linked list Node definition
+typedef struct Node Node;
 struct Node
 {
     int number;
-    node *next;
+    Node *next; 
 };
 
-static node *top = NULL;
+
+// used to track where we are for the list traversal methods
+static Node *traverseNode = NULL;
+static Node *top = NULL;
 int size = 0;
+
 
 static int insertHere(int toInsert);
 
-// used to track where we are for the list traversal methods
-static node *traverseNode = NULL;
 
 // "destroy" will deallocate all nodes in a linked list object
 // and will set "top" to NULL.
 void clearTable()
 {
-    node *curr = top;
-    node *temp = NULL;
+    Node *curr = top;
+    Node *temp = NULL;
 
     while (curr != NULL)
     {
@@ -42,12 +53,14 @@ void clearTable()
     top = NULL;
 }
 
+// insert the given int. 
+// return true if inserted, false if dulplicate
 Boolean insertItem(int toInsert)
 {
-    node *newNode = NULL;
+    Node *newNode = NULL;
     int whereToInsert = insertHere(toInsert);
-    node * insertAfterNode = top;
-    node * insertBeforeNode = NULL;
+    Node * insertAfterNode = top;
+    Node * insertBeforeNode = NULL;
 
     // dulplicate
     if (whereToInsert == -999)
@@ -57,7 +70,7 @@ Boolean insertItem(int toInsert)
     // insert at top
     else if (whereToInsert == 0)
     {
-        newNode = malloc(sizeof(node));
+        newNode = malloc(sizeof(Node));
         newNode->number = toInsert;
         newNode->next = top;
         top = newNode;
@@ -73,7 +86,7 @@ Boolean insertItem(int toInsert)
 
     insertBeforeNode = insertAfterNode -> next;
 
-    newNode = malloc(sizeof(node));
+    newNode = malloc(sizeof(Node));
     newNode->number = toInsert;
     insertAfterNode->next = newNode;
     newNode->next = insertBeforeNode;
@@ -100,7 +113,7 @@ Boolean firstItem(int * const item)
     return result;
 }
 
-// gets the data at the current traversal node and increments the traversal.
+// gets the data at the current traversal Node and increments the traversal.
 // returns false if we're at the end of the list.
 Boolean nextItem(int * const item)
 {
@@ -119,21 +132,23 @@ Boolean nextItem(int * const item)
 }
 
 
+// find out where to insert. 
+// Return -999 if duplicate.
 static int insertHere(int toInsert)
 {
-    node * curr = top;
+    Node * curr = top;
     Boolean duplicate = false;
     int ret = 0;
 
     // for every element in list
     while (curr != NULL)
     {
+        // check for duplicates
         if (toInsert == (curr -> number))
         {
             duplicate = true;
         }
         
-        //
         if (toInsert > (curr -> number))
         {
             ret++;
@@ -152,9 +167,11 @@ static int insertHere(int toInsert)
     }
 }
 
+// Search for given item. 
+// true if found, false if not found.
 Boolean search(int item)
 {
-    node * curr = top;
+    Node * curr = top;
 
     while (curr != NULL)
     {
@@ -169,10 +186,12 @@ Boolean search(int item)
     return false;
 }
 
+// remove the given item. 
+// true if given item is found and removed from table.
 Boolean removeItem( int item )
 {
-    node *prev = top;
-    node *temp = NULL;
+    Node *prev = top;
+    Node *temp = NULL;
 
     if (!search(item))
     {
@@ -199,7 +218,7 @@ Boolean removeItem( int item )
         // if found item
         if (prev->next->number == item)
         {
-            // node to delete
+            // Node to delete
             temp = prev->next;
             // skip it
             prev->next = temp->next;
@@ -216,9 +235,10 @@ Boolean removeItem( int item )
     return false;
 }
 
+// print the whole table
 void printTable()
 {
-    node * curr = top;
+    Node * curr = top;
 
     while (curr != NULL)
     {

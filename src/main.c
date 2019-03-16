@@ -1,15 +1,27 @@
+//--------------------------------------------------------------
+// Name: Shang Wu
+// Student Number: 7852291
+// Course: COMP2160, Section A01
+// Instructor: Mehdi Niknam
+// Assignment 3, Question 1
+// 
+// Main driver program for table.c
+// Implemented a simple shell to test table.c
+// Can be used as both scripter and shell
+//--------------------------------------------------------------
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
 #include "table.h"
+
 
 const int MAX = 50;
 
 int main(int argc,char *argv[])
 {
     FILE * instructionStream = stdin;
-    bool readScript = false;
+    Boolean readScript = false;
 
     if (argc > 1)
     {
@@ -50,7 +62,7 @@ int main(int argc,char *argv[])
             {
                 printf("\n");
             }
-            
+
             continue;
         }
 
