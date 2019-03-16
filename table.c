@@ -92,7 +92,7 @@ Boolean firstItem(int * const item)
     {
         *item = top->number;
 
-        traverseNode = top->next;
+        traverseNode = top;//->next;
 
         result = true;
     }
@@ -106,9 +106,9 @@ Boolean nextItem(int * const item)
 {
     Boolean result = false;
 
-    if (traverseNode)
+    if (traverseNode->next)
     {
-        *item = traverseNode->number;
+        *item = traverseNode->next->number;
 
         traverseNode = traverseNode->next;
 
