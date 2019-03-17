@@ -10,6 +10,7 @@
 //--------------------------------------------------------------
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 
 // Boolean defenition
@@ -28,16 +29,19 @@ struct Node
 // used to track where we are for the list traversal methods
 static Node *traverseNode = NULL;
 static Node *top = NULL;
-int size = 0;
+int tableSize = 0;
 
 
 static int insertHere(int toInsert);
+static void validateList();
 
 
 // "destroy" will deallocate all nodes in a linked list object
 // and will set "top" to NULL.
 void clearTable()
 {
+    validateList();
+
     Node *curr = top;
     Node *temp = NULL;
 
@@ -51,12 +55,16 @@ void clearTable()
     }
 
     top = NULL;
+
+    validateList();
 }
 
 // insert the given int. 
 // return true if inserted, false if dulplicate
 Boolean insertItem(int toInsert)
 {
+    validateList();
+
     Node *newNode = NULL;
     int whereToInsert = insertHere(toInsert);
     Node * insertAfterNode = top;
@@ -75,7 +83,7 @@ Boolean insertItem(int toInsert)
         newNode->next = top;
         top = newNode;
 
-        size++;
+        tableSize++;
         return true;
     }
     
@@ -91,7 +99,8 @@ Boolean insertItem(int toInsert)
     insertAfterNode->next = newNode;
     newNode->next = insertBeforeNode;
     
-    size++;
+    tableSize++;
+    validateList();
     return true;
 }
 
@@ -99,6 +108,8 @@ Boolean insertItem(int toInsert)
 // returns false if top == NULL.
 Boolean firstItem(int * const item)
 {
+    validateList();
+
     Boolean result = false;
 
     if (top)
@@ -110,6 +121,7 @@ Boolean firstItem(int * const item)
         result = true;
     }
 
+    validateList();
     return result;
 }
 
@@ -117,6 +129,8 @@ Boolean firstItem(int * const item)
 // returns false if we're at the end of the list.
 Boolean nextItem(int * const item)
 {
+    validateList();
+
     Boolean result = false;
 
     if (traverseNode->next)
@@ -128,6 +142,7 @@ Boolean nextItem(int * const item)
         result = true;
     }
 
+    validateList();
     return result;
 }
 
@@ -136,6 +151,8 @@ Boolean nextItem(int * const item)
 // Return -999 if duplicate.
 static int insertHere(int toInsert)
 {
+    validateList();
+
     Node * curr = top;
     Boolean duplicate = false;
     int ret = 0;
@@ -159,10 +176,12 @@ static int insertHere(int toInsert)
 
     if (duplicate)
     {
+        validateList();
         return -999;
     }
     else
     {
+        validateList();
         return ret;
     }
 }
@@ -171,18 +190,21 @@ static int insertHere(int toInsert)
 // true if found, false if not found.
 Boolean search(int item)
 {
+    validateList();
     Node * curr = top;
 
     while (curr != NULL)
     {
         if (item == (curr -> number))
         {
+            validateList();
             return true;
         }
 
         curr = curr -> next;
     }
 
+    validateList();
     return false;
 }
 
@@ -190,11 +212,14 @@ Boolean search(int item)
 // true if given item is found and removed from table.
 Boolean removeItem( int item )
 {
+    validateList();
+
     Node *prev = top;
     Node *temp = NULL;
 
     if (!search(item))
     {
+        validateList();
         return false;
     }
 
@@ -204,7 +229,8 @@ Boolean removeItem( int item )
         top = top->next;
         free(temp);
 
-        size--;
+        tableSize--;
+        validateList();
         return true;
     }
 
@@ -225,19 +251,23 @@ Boolean removeItem( int item )
             // delete from memory
             free(temp);
 
-            size--;
+            tableSize--;
+            validateList();
             return true;
         }
 
         prev = prev->next;
     }
 
+    validateList();
     return false;
 }
 
 // print the whole table
 void printTable()
 {
+    validateList();
+
     Node * curr = top;
 
     while (curr != NULL)
@@ -247,4 +277,42 @@ void printTable()
     }
 
     printf("\n");
+    validateList();
+}
+
+static void validateList()
+{
+    #ifndef NDEBUG
+        Node * curr = top;
+        int nodeCount = 0;
+        int prevNum;
+    #endif
+
+    if (tableSize == 0)
+    {
+        assert(top == NULL);
+    }
+    else if (tableSize == 1)
+    {
+        assert(top -> next == NULL);
+    }
+    else
+    {
+        assert (top != NULL && top -> next != NULL);
+    }
+
+    #ifndef NDEBUG
+        while(curr != NULL)
+        {
+            nodeCount++;
+            prevNum = curr -> next;
+            curr = curr -> next;
+            if (curr != NULL)
+            {
+                assert(prevNum >= curr -> number);
+                prevNum = curr -> number;
+            }
+        }
+        assert (nodeCount == tableSize);
+    #endif
 }
