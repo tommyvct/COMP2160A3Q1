@@ -133,6 +133,11 @@ Boolean nextItem(int * const item)
 
     Boolean result = false;
 
+    if (!traverseNode)
+    {
+        return false;
+    }
+
     if (traverseNode->next)
     {
         *item = traverseNode->next->number;
@@ -305,7 +310,7 @@ static void validateList()
         while(curr != NULL)
         {
             nodeCount++;
-            prevNum = curr -> next;
+            prevNum = curr -> number;
             curr = curr -> next;
             if (curr != NULL)
             {

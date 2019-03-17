@@ -1,0 +1,46 @@
+insert -99
+insert 88
+insert 77
+insert -999
+insert 50
+insert -98./bi
+insert 97
+insert 233
+insert -666
+
+print
+
+next
+first
+next
+next
+next
+next
+next
+next
+next
+next
+next
+next
+next
+next
+next
+next
+next
+
+print
+first
+remove -999
+next
+print
+
+first
+next
+remove -99
+first
+next
+
+search 4938
+search 98
+search 88
+search -666
