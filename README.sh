@@ -1,12 +1,19 @@
 echo "================================================="
 echo "=================COMP2160 A3Q1==================="
 echo "================================================="
-echo 
+echo "==============Wu Tommy (7852291)================="
+echo "================================================="
+echo
+echo
 
 ####  Run this script to automatically make and run this
 ####  table program, and test from provided script.
 
 ####  How to use this test shell:
+####    ./bin/table for interactive shell, OR
+####    ./bin/table script.file to use as a scripter
+
+####  Supported operations:
 ####  insert (int): insert an integer into table
 ####  remove (int): remove an integer into table
 ####  search (int): search for the presence of an integer
@@ -15,24 +22,32 @@ echo
 ####  next:  print the next item in the table
 ####  print: print the whole table
 
-echo "excuting make"
-make
 
-echo 
+echo "================================================="
+echo "=================excuting make==================="
 echo "================================================="
 echo 
 
-echo "testing table program"
+make
+
+echo
+echo
+
+echo "================================================="
+echo "=============testing table program==============="
+echo "================================================="
+
 for script in ./test_script/*
 do
-    ./bin/table $script
     echo
+    ./bin/table $script
     echo
 done
 
-echo 
+echo
+echo "================================================="
+echo "===========Test complete, cleaning==============="
 echo "================================================="
 echo 
 
-echo "cleaning"
 make clean
