@@ -3,32 +3,24 @@ insert 2
 insert 3
 insert 4
 insert 5
-
 print
-
 remove 2
 remove 4
-
 search 5
 search 8
-
 clear
 print
 first
 next
 next
-
 insert 3
 insert 5
 insert 1
 insert 11
 insert 9
 insert 7
-
 print
-
 search 11
 search 9
 search 99
-
 exit

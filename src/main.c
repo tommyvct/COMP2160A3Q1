@@ -112,7 +112,7 @@ int main(int argc,char *argv[])
                 }
                 else
                 {
-                    fprintf(stdout, "Command not found.\n");
+                    fprintf(stdout, "Command not found1.\n");
                 }
 
             }
@@ -168,7 +168,7 @@ int main(int argc,char *argv[])
             }
             else
             {
-                fprintf(stdout, "Command not found.\n");
+                fprintf(stdout, "Command not found2.\n");
             }
         }
 

@@ -1,12 +1,12 @@
-insert -99
-insert 88
-insert 77
-insert -999
-insert 50
-insert -98./bi
-insert 97
-insert 233
-insert -666
+insert 55
+insert 44
+insert 33
+insert 22
+insert 11
+insert -11
+insert -22
+insert -33
+insert -44
 
 print
 
@@ -30,17 +30,18 @@ next
 
 print
 first
-remove -999
+remove -44
 next
 print
 
 first
 next
-remove -99
+remove -22
 first
 next
 
 search 4938
-search 98
-search 88
+search 33
+search 55
+search 66
 search -666
