@@ -1,8 +1,6 @@
 #ifndef _TABLE_H
 #define _TABLE_H
 
-
-
 //-----------------------------------------------------------------------------
 // CONSTANTS AND TYPES
 //-----------------------------------------------------------------------------
@@ -30,6 +28,5 @@ Boolean firstItem( int * const item );
 Boolean nextItem( int * const item );
 
 void printTable();
-
 
 #endif
