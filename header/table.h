@@ -27,6 +27,7 @@ Boolean search( int item );
 Boolean firstItem( int * const item );
 Boolean nextItem( int * const item );
 
+// print the whole table
 void printTable();
 
 #endif

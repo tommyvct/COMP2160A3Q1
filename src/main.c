@@ -23,6 +23,7 @@ int main(int argc,char *argv[])
     FILE * instructionStream = stdin;
     Boolean readScript = false;
 
+    // if a script file passed in
     if (argc > 1)
     {
         instructionStream = fopen(argv[1], "r");
