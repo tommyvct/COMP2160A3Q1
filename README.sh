@@ -26,6 +26,8 @@ echo "testing table program"
 for script in ./test_script/*
 do
     ./bin/table $script
+    echo
+    echo
 done
 
 echo 
