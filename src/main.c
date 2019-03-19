@@ -162,7 +162,7 @@ int main(int argc,char *argv[])
             {
                 printTable();
             }
-            else if (!strcmp("exit\n", instruction))
+            else if (!strcmp("exit\n", instruction) || !strcmp("exit", instruction) )
             {
                 break;
             }

@@ -28,6 +28,7 @@ struct Node
 
 // used to track where we are for the list traversal methods
 static Node *traverseNode = NULL;
+
 static Node *top = NULL;
 int tableSize = 0;
 
@@ -253,6 +254,7 @@ Boolean removeItem( int item )
             temp = prev->next;
             // skip it
             prev->next = temp->next;
+
             // delete from memory
             free(temp);
 

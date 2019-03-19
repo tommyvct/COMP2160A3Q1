@@ -28,20 +28,23 @@ next
 next
 next
 
-print
-first
-remove -44
-next
-print
-
-first
-next
-remove -22
-first
-next
 
 search 4938
 search 33
 search 55
+remove 55
+search 55
 search 66
 search -666
+
+search 44
+search 33
+search 22
+search 11
+search -11
+search -22
+search -33
+search -44
+
+
+exit

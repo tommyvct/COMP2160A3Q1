@@ -12,7 +12,7 @@ TARGET   =./bin/table
 DIR_SRC  =./src/
 DIR_OBJS =./.objects
 CC       =clang
-CCFLAGS  =-Wall -DNDEBUG 
+CCFLAGS  =-Wall -DNDEBUG -g
 
 
 #---------------------------------------------------------------------
