@@ -44,6 +44,7 @@ check_headers: $(HEADERS)
 
 make_directory:
 	mkdir -p $(DIR_OBJS)/
+	mkdir -p ./bin
 
 # Compile C files
 $(DIR_OBJS)/%.o: $(DIR_SRC)%.c
